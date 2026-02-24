@@ -1,0 +1,10 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Login | KoPartner Panels</title><link rel='stylesheet' href='/styles.css'></head>
+<body><section class='section'><h2>Panel Login</h2><p>Use: admin@kopartner.in / admin123, client@kopartner.in / client123, partner@kopartner.in / partner123</p>
+<div class='card' style='max-width:520px;margin:0 auto'>
+<input id='email' placeholder='Email' style='width:100%;padding:10px;margin-bottom:10px'>
+<input id='password' type='password' placeholder='Password' style='width:100%;padding:10px;margin-bottom:10px'>
+<button class='primary' id='loginBtn'>Login</button><p id='msg'></p></div></section>
+<script src='/app.js'></script><script>
+document.getElementById('loginBtn').onclick=async()=>{try{const {user}=await KP.api.login(email.value,password.value);KP.saveSession(user);location.href=`/${user.role}.html`;}catch(e){msg.textContent='Invalid login';msg.style.color='crimson';}};
+</script></body></html>

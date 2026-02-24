@@ -1,0 +1,11 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Partner Panel</title><link rel='stylesheet' href='/styles.css'></head>
+<body><header class='topbar'><div class='logo'>KoPartner Partner</div><nav><a href='/'>Home</a><button onclick='KP.logout()'>Logout</button></nav></header>
+<section class='section'><h2>Assigned Bookings</h2><div id='bookings' class='grid2'></div></section>
+<section class='section'><h2>Payouts</h2><div id='payouts' class='grid2'></div></section>
+<script src='/app.js'></script><script>
+(async()=>{const u=KP.getSession();if(!u||u.role!=='partner')location.href='/login.html';
+const b=await KP.api.partnerBookings(u.id);bookings.innerHTML=b.map(x=>`<article class='card'><h3>${x.service_name}</h3><p>Client: ${x.client_name}</p><p>${x.booking_date} • ${x.duration_hours}h</p><p>Status: ${x.status}</p></article>`).join('')||'<p>No assigned bookings.</p>';
+const p=await KP.api.partnerPayouts(u.id);payouts.innerHTML=p.map(x=>`<article class='card'><h3>Booking #${x.booking_id}</h3><p>Amount: ₹${x.amount}</p><p>Status: ${x.status}</p></article>`).join('')||'<p>No payouts.</p>';
+})();
+</script></body></html>
