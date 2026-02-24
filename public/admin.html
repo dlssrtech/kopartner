@@ -1,0 +1,14 @@
+<!doctype html><html><head><meta charset='utf-8'><meta name='viewport' content='width=device-width, initial-scale=1'>
+<title>Admin Panel</title><link rel='stylesheet' href='/styles.css'></head>
+<body><header class='topbar'><div class='logo'>KoPartner Admin</div><nav><a href='/'>Home</a><button onclick='KP.logout()'>Logout</button></nav></header>
+<section class='section'><h2>Overview</h2><div id='overview' class='grid3'></div></section>
+<section class='section'><h2>All Users</h2><div id='users' class='grid3'></div></section>
+<section class='section'><h2>Bookings Management</h2><div id='bookings' class='grid2'></div></section>
+<script src='/app.js'></script><script>
+(async()=>{const u=KP.getSession();if(!u||u.role!=='admin')location.href='/login.html';
+const ov=await KP.api.adminOverview();overview.innerHTML=`<article class='card'><h3>Revenue</h3><p>₹${ov.revenue}</p></article><article class='card'><h3>Users by role</h3><p>${ov.users.map(x=>`${x.role}:${x.count}`).join(' | ')}</p></article><article class='card'><h3>Bookings by status</h3><p>${ov.bookings.map(x=>`${x.status}:${x.count}`).join(' | ')}</p></article>`;
+const us=await KP.api.adminUsers();users.innerHTML=us.map(x=>`<article class='card'><h3>${x.full_name}</h3><p>${x.email}</p><p>${x.role} • ${x.city||'-'}</p></article>`).join('');
+const bs=await KP.api.adminBookings();bookings.innerHTML=bs.map(x=>`<article class='card'><h3>#${x.id} ${x.service_name}</h3><p>${x.client_name} → ${x.partner_name||'Unassigned'}</p><p>Status: ${x.status}</p><button class='primary' onclick='assign(${x.id})'>Assign demo partner + confirm</button></article>`).join('');
+window.assign=async(id)=>{await KP.api.updateBooking(id,{status:'confirmed',partner_id:3});location.reload();};
+})();
+</script></body></html>

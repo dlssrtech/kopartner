@@ -1,0 +1,38 @@
+CREATE TABLE bookings (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  client_id INTEGER NOT NULL,
+  partner_id INTEGER,
+  service_id INTEGER NOT NULL,
+  booking_date TEXT NOT NULL,
+  duration_hours INTEGER NOT NULL,
+  status TEXT NOT NULL DEFAULT 'pending',
+  notes TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE payouts (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  partner_id INTEGER NOT NULL,
+  booking_id INTEGER NOT NULL,
+  amount INTEGER NOT NULL,
+  status TEXT NOT NULL DEFAULT 'due',
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE services (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  name TEXT NOT NULL,
+  price_per_hour INTEGER NOT NULL,
+  active INTEGER DEFAULT 1
+);
+
+CREATE TABLE users (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  full_name TEXT NOT NULL,
+  email TEXT UNIQUE NOT NULL,
+  phone TEXT,
+  role TEXT NOT NULL CHECK(role IN ('admin','client','partner')),
+  password TEXT NOT NULL,
+  city TEXT,
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+);
