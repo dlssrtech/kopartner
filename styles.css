@@ -1,0 +1,15 @@
+:root{--purple:#aa32df;--pink:#e93293;--bg:#f2eef6;--text:#231f2e}
+*{box-sizing:border-box}body{font-family:Inter,sans-serif;margin:0;background:var(--bg);color:var(--text)}
+.topbar{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;background:#f4f1f8;position:sticky;top:0}
+.logo{font-weight:800;color:#7a2ecb}.topbar nav{display:flex;gap:18px;align-items:center;font-size:14px}.topbar button,.primary,.cta{border:none;background:linear-gradient(90deg,var(--purple),var(--pink));color:#fff;border-radius:999px;padding:10px 18px;font-weight:600}
+.section{max-width:1100px;margin:0 auto;padding:38px 16px;text-align:center}.hero h1{font-size:52px;line-height:1.12;margin:10px 0}.hero h1 span{color:var(--purple)}
+.badge{display:inline-block;background:#f3ddff;color:#8126d5;padding:6px 14px;border-radius:999px;font-size:12px}
+.actions{display:flex;gap:12px;justify-content:center;margin:20px 0}.ghost{border:1px solid #ac5adb;background:#fff;color:#912bcf;border-radius:999px;padding:10px 18px}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.stats>div{background:#fff;border-radius:10px;padding:16px}.stats b{display:block;color:#9e2fd8}.stats span{font-size:13px;color:#666}
+.card{background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,.08);padding:20px;text-align:left}.large{text-align:center}
+.city-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:14px}.city-grid span{background:#efe8f8;padding:8px;border-radius:8px;font-size:13px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.services .card p{color:#dd1483;font-weight:700}.green-soft{background:#d8efe5;border-radius:12px}.earning{background:linear-gradient(180deg,#11a658,#0b8a63);color:#fff;max-width:none}.earning h2{margin:8px 0 20px}.dark>div{background:rgba(255,255,255,.18)}
+.faq details{max-width:900px;margin:10px auto;background:#fff;padding:14px 18px;border-radius:10px;text-align:left}
+footer{background:linear-gradient(90deg,#2f0b56,#5f1085);padding:36px 20px;color:#fff;display:grid;grid-template-columns:repeat(4,1fr);gap:16px}h2{color:#a023dc;font-size:40px;margin:6px 0 16px}
+@media (max-width:900px){.grid4,.stats{grid-template-columns:repeat(2,1fr)}.grid3,.grid2,.city-grid{grid-template-columns:1fr}.hero h1{font-size:34px}footer{grid-template-columns:1fr 1fr}}
